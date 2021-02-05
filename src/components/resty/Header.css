@@ -1,0 +1,13 @@
+.Header{
+    background: #9fcbf7;
+    color: #e47e7e;
+    height: 5em;
+    line-height: 4em;
+    padding: 0 2em;
+    font-family: 'Times New Roman', Times, serif;
+  
+    h1{
+      font-size: 6em;
+      font-weight: 800;
+    }
+  }
