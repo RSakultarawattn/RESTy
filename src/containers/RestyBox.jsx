@@ -1,99 +1,99 @@
 import React, { Component } from 'react';
 import Header from '../components/resty/Header';
-import Form from '../components/restless/Form';
+import Form from '../components/resty/Form';
 import Display from '../components/resty/Display';
 import HistoryList from '../components/resty/HistoryList';
+import styles from './RestyBox.css';
 
 
 export default class RestyBox extends Component {
     state ={
-        url: '',
-        method: '',
-        body: '',
-        history: [],
-        display: { 'Howdy!':'Go get something for me, will ya?' }
+      url: '',
+      method: '',
+      body: '',
+      history: [],
+      display: { 'Howdy!':'Go get something for me, will ya?' }
     }
 
     componentDidMount(){
-        const storeHistory = JSON.parse(localStorage.getItem('history'));
+      const storeHistory = JSON.parse(localStorage.getItem('history'));
 
-        if(storeHistory){
-            this.setState({ history: storeHistory });
-        }
+      if(storeHistory){
+        this.setState({ history: storeHistory });
+      }
     }
 
     handleChange = ({ target }) => {
-        this.setState({ [target.name]: target.value })
+      this.setState({ [target.name]: target.value });
     }
 
     handleSubmit = event => {
-        const { url, method, history } = this.state;
-        const key = `${url}+${method}`;
+      const { url, method, history } = this.state;
+      const key = `${url}+${method}`;
 
-        event.preventDefault();
-        this.fetch();
+      event.preventDefault();
+      this.fetch();
 
-        if(history.filter(item => item.key === key).length > 0 || method === '') return;
-        this.setState(state => ({
-          history: [...state.history, {
-            url: state.url, 
-            method: state.method,
-            body: state.body,
-            key: `${state.url}+${state.method}`
-          }]
-        }));
+      if(history.filter(item => item.key === key).length > 0 || method === '') return;
+      this.setState(state => ({
+        history: [...state.history, {
+          url: state.url, 
+          method: state.method,
+          body: state.body,
+          key: `${state.url}+${state.method}`
+        }]
+      }));
 
-        this.setState(state => {
-            localStorage.setItem('history', JSON.stringify(state.history));
-        });
+      this.setState(state => {
+        localStorage.setItem('history', JSON.stringify(state.history));
+      });
     }
 
     handleClick = event => {
-        const { id } = event.target;
-        let result;
+      const { id } = event.target;
+      let result;
 
-        this.state.history.forEach(item => {
-            if(item.key === id){
-                result = item;
-            }
-        });
+      this.state.history.forEach(item => {
+        if(item.key === id){
+          result = item;
+        }
+      });
 
-        this.setState({
-            url: result.url, 
-            method: result.method,
-            body: result.body
-        });
+      this.setState({
+        url: result.url, 
+        method: result.method,
+        body: result.body
+      });
     }
 
     fetch = () => {
-        const { url, method, body } = this.state;
-        return fetchApi(url, method, body)
-            .then(res => this.setState({ display: res }))
+      const { url, method, body } = this.state;
+      return fetchApi(url, method, body)
+        .then(res => this.setState({ display: res }));
     }
     render() {
-        const { url, method, body, history, display } = this.state;
+      const { url, method, body, history, display } = this.state;
 
-        return (
+      return (
 
-            <>
-            <Header/>
-            <div className={styles.RestyBox}>
-                <HistoryList history={history} onClick={this.handleClick} />
-                <section>
-                    <Form
-                        url={url}
-                        method={method}
-                        body={body}
-                        onSubmit={this.handleSubmit}
-                        onChange={this.handleChange} />
-                        <Display display={display} />
+        <>
+          <Header/>
+          <div className={styles.RestyBox}>
+            <HistoryList history={history} onClick={this.handleClick} />
+            <section>
+              <Form
+                url={url}
+                method={method}
+                body={body}
+                onSubmit={this.handleSubmit}
+                onChange={this.handleChange} />
+              <Display display={display} />
 
-                </section>
+            </section>
                 
-            </div>
-            </>
-        );
+          </div>
+        </>
+      );
     }
 }
 
-export default RestyBox;
