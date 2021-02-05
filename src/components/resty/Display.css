@@ -1,10 +1,12 @@
 .Display{
-    background-color: rgb(163, 182, 142);
-    height: 41vw;
+    background-color: bisque;
+    height: 800px;
+    width: 1300px;
     margin-top: 10px;
-    margin-right: .3vw;
-    margin-bottom: .3vw;
+    margin-right: 20%;
+    margin-bottom: .5vw;
     border: 1px solid rgb(112, 42, 42);
+    border-radius: 2%;
     overflow: auto;
     padding: 2em;
   }

@@ -1,12 +1,12 @@
 .History{
-    width: 18vw;
+    width: 500px;
     margin: 2px;
     display: flex;
     flex-direction: column;
   
     li{
-      background-color: yellow;
-      color: beige;
+      background-color: bisque;
+      color: red;
       width: 17vw;
       font-size: 13.5px;
       margin: 2px;

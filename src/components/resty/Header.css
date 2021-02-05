@@ -1,13 +1,18 @@
 .Header{
-    background: #9fcbf7;
-    color: #e47e7e;
-    height: 5em;
+    background-image: url("/public/assets/amerflag.jpg");
+    color: white;
+    height: 7em;
     line-height: 4em;
     padding: 0 2em;
     font-family: 'Times New Roman', Times, serif;
   
+   
     h1{
+      -webkit-text-stroke: 2px maroon;
+
       font-size: 6em;
       font-weight: 800;
     }
   }
+
+  

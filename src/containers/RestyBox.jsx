@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/resty/Header';
 import Form from '../components/resty/Form';
+import { fetchApi } from '../services/fetchApi';
 import Display from '../components/resty/Display';
 import HistoryList from '../components/resty/HistoryList';
 import styles from './RestyBox.css';
@@ -34,11 +35,12 @@ export default class RestyBox extends Component {
       event.preventDefault();
       this.fetch();
 
-      if(history.filter(item => item.key === key).length > 0 || method === '') return;
+      if(history.filter
+      (item => item.key === key).length > 0 || method === '') return;
       this.setState(state => ({
         history: [...state.history, {
           url: state.url, 
-          method: state.method,
+          method: state.method,  
           body: state.body,
           key: `${state.url}+${state.method}`
         }]
