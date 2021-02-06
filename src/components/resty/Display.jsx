@@ -6,7 +6,7 @@ import ReactJson from 'react-json-view';
 
 const Display = ({ display }) => {
   return (
-    <pre className={styles.Display}>
+    <pre data-testid="display" className={styles.Display}>
       <ReactJson src={display} displayDataTypes={false} />
     </pre>
   );
