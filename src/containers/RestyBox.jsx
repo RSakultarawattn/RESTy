@@ -68,6 +68,8 @@ export default class RestyBox extends Component {
       });
     }
 
+    //to run test
+
     fetch = () => {
       const { url, method, body } = this.state;
       return fetchApi(url, method, body)
